@@ -48,7 +48,7 @@
 			function initMap() {
 				jQuery.ajax({
 					type		: 'post',
-					url			: 'script/workshop_coordinate.php',
+					url			: 'script/controller.php?action=coordinate',
 					timeout		: 120000,
 					success	: function(data) {
 						locations = JSON.parse(data);

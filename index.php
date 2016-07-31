@@ -75,6 +75,7 @@
 						<th>Oil Change Services</th>
 						<th>Battery Change Services</th>
 						<th>Customer Rating</th>
+						<th>Available Time</th>
 					</tr>
 				</thead>
 			</table>
@@ -91,7 +92,7 @@
 		<script>
 			jQuery(document).ready(function() {
 				oTable = jQuery('#example').DataTable({
-					"ajax": { "url": "script/workshop.php" },
+					"ajax": { "url": "script/controller.php?action=datatable" },
 					"columns": [
 						{ "data": "workshop_name" },
 						{ "data": "phone" },
@@ -99,7 +100,13 @@
 						{ "data": "oil_change" },
 						{ "data": "battery_change" },
 						{ "data": "customer_rating" },
+						{ "defaultContent": "<button class='btn btn-sm btn-success btn-block'>Check</button>" },
 					]
+				});
+				
+				jQuery('#example tbody').on('click', 'button', function() {
+					var data = oTable.row(jQuery(this).parents('tr')).data();
+					window.location.href = 'booking.php?workshop=' + data.workshop_id;
 				});
 				
 				jQuery('#tyre_services').on('change', function() {
